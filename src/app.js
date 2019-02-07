@@ -9,9 +9,9 @@ app.use(bodyParser.json())
 app.use(morgan('dev'))
 if(process.env.NODE_ENV !== 'production'){require('dotenv').load()}
 
-//Routes
-// app.use('/', require('./routes/auth'))
-// app.use('/players', require('./routes/players'))
+// Routes
+app.use('/', require('./routes/auth'))
+app.use('/players', require('./routes/players'))
 
 //Default Route
 app.use(function(req, res, next){
