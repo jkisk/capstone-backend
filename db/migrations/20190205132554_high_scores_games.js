@@ -1,5 +1,5 @@
 
-exports.up = function(knex, Promise) {
+exports.up = function(knex) {
     return knex.schema.createTable('high_scores_games', table => {
         table.increments()
         table.integer('score_id').notNullable()
@@ -10,6 +10,6 @@ exports.up = function(knex, Promise) {
     })
 };
 
-exports.down = function(knex, Promise) {
+exports.down = function(knex) {
     return knex.schema.dropTable('high_scores_games')
 };

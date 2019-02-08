@@ -1,11 +1,16 @@
+const knex = require('../../db/index')
 
 
 
 
-
-const getUserByPlayername = (playername) => {
+const getPlayer = (playername) => {
+    return (
+        knex('players')
+        .where({ 'playername': playername })
+        .first()
+      )
 
 }
 
 
-module.exports = {getUserByPlayername}
+module.exports = getPlayer
