@@ -10,5 +10,5 @@ exports.up = function(knex, Promise) {
 }
 
 exports.down = function(knex, Promise) {
-    return knex.schema.dropTable('high_scores')
+    return knex.schema.dropTableIfExists('high_scores')
 }

@@ -5,7 +5,7 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('games').insert([
-        {id: 1, playletters: 'AIRMEGA', validwords: {"words": "AIR MEGA GAMER"}, perfectscore: 713},
+        {id: 1, playletters: 'AIRMEGA', validwords: {"words": ['AIR', 'MEGA', 'GAMER']}, perfectscore: 713},
       ]);
     });
 };
