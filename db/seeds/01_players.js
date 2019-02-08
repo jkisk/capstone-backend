@@ -9,7 +9,14 @@ exports.seed = function(knex, Promise) {
         {id: 2, playername: 'Milo', hashword: '$2a$10$2SgVm2rMACyU6IHUe8ghzuYF3TUwwIKCfysRrGdy.1wE9LJ2QKWta' },
         {id: 3, playername: 'Felix', hashword: '$2a$10$j9xH63OzFXSVK5AjZOSJGO67ceyENUD2XcDIo3jVQW/n5DOQnVBWq' },
       ]);
-    });
+    })
+    .then(() => {
+      // reset sequence
+      return knex.raw(
+        `SELECT setval('players_id_seq', (SELECT MAX(id) FROM players));`
+      )
+    })
+
 };
 
 // frog, turtle, dino

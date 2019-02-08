@@ -6,7 +6,7 @@ const players = require('./players')
 
 const login = (playername, password) => {
   let player
-  return players.getUserByPlayername(playername)
+  return players.getPlayer(playername)
     .then(data => {
       if (!data) throw { status: 400, message: 'Bad Request!' }
       user = data

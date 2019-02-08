@@ -3,10 +3,10 @@ const jwt = require('jsonwebtoken')
 
 const login = (req, res, next) => {
 
-  if (!req.body.email || !req.body.password)
+  if (!req.body.playername || !req.body.password)
     return next({ status: 400, message: 'Bad Request' })
 
-  auth.login(req.body.email, req.body.password)
+  auth.login(req.body.playername, req.body.password)
     .then(player => {
       const token = jwt.sign({ id: player.id }, process.env.SECRET)
       return res.status(200).send({ token })
@@ -36,4 +36,4 @@ const isSelf = (req, res, next) => {
 }
 
 
-module.exports = {login, status, authenticated, isSelf}
+module.exports = { login, status, authenticated, isSelf }
