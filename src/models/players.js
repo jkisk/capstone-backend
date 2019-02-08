@@ -3,14 +3,14 @@ const knex = require('../../db/index')
 
 
 
-const getPlayer = (playername) => {
+const getPlayer = (id) => {
     return (
         knex('players')
-        .where({ 'playername': playername })
+        .where({ 'id': id })
         .first()
       )
 
 }
 
 
-module.exports = getPlayer
+module.exports = {getPlayer}
