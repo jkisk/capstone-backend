@@ -1,15 +1,15 @@
 
 const bcrypt = require('bcrypt')
-const players = require('./players')
+const {getPlayer} = require('./players')
 
 
 
 const login = (playername, password) => {
   let player
-  return players.getPlayer(playername)
+  return getPlayer(playername)
     .then(data => {
       if (!data) throw { status: 400, message: 'Bad Request!' }
-      user = data
+      player = data
       return bcrypt.compare(password, data.hashword)
     })
     .then(status => {
