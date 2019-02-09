@@ -11,7 +11,8 @@ if(process.env.NODE_ENV !== 'production'){require('dotenv').load()}
 
 // Routes
 app.use('/', require('./routes/auth'))
-app.use('/players', require('./routes/players'))
+app.use('/', require('./routes/players'))
+app.use('/', require('./routes/games'))
 
 //Default Route
 app.use(function(req, res, next){
