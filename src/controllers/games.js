@@ -3,7 +3,7 @@ const model = require('../models/games')
 
 function newGame(req, res, next) {
     console.log('in controller')
-    model.newGame()
+    model.newGame(req.params.id)
         .then(function (data) {
             res.send({ data })
         })

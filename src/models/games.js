@@ -40,11 +40,11 @@ function validate(arr) {
     return result
 }
 
-function newGame(){
+function newGame(id){
     console.log('in model')
     return (
         knex('games')
-            .where({ 'id': 1 })
+            .where({ 'id': id })
             .first()
     )
 }

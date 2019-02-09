@@ -1,10 +1,10 @@
 const express = require('express')
-const router = express.Router({ mergeParams: true })
-const {newGame} = require('../controllers/games')
+const router = express.Router({mergeParams: true})
+const ctrl = require('../controllers/games')
 
 
 
-router.get('/games', newGame)
+router.get('/games/:gameId', ctrl.newGame)
 
 
 
