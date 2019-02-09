@@ -14,7 +14,7 @@ app.use('/', require('./routes/auth'))
 app.use('/', require('./routes/players'))
 app.use('/', require('./routes/games'))
 
-//Default Route
+// Default Route
 app.use(function(req, res, next){
     next({status: 404, message: 'Route not found' })
 })

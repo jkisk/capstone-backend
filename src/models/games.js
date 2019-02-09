@@ -41,7 +41,6 @@ function validate(arr) {
 }
 
 function newGame(id){
-    console.log('in model')
     return (
         knex('games')
             .where({ 'id': id })

@@ -2,8 +2,7 @@ const model = require('../models/games')
 
 
 function newGame(req, res, next) {
-    console.log('in controller')
-    model.newGame(req.params.id)
+    model.newGame(req.params.gameId)
         .then(function (data) {
             res.send({ data })
         })
