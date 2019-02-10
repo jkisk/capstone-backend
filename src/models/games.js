@@ -48,8 +48,24 @@ function newGame(id){
     )
 }
 
+function createGame(string){
+    let validArr
+    let wordArr = permut(string)
+    .then(() => {
+        validArr = validate(wordArr)
+    })
+    return (
+        knex('games')
+        .insert({playletters:string, validwords: validArr})
+        .returning('*')
+    )
+
+}
+
+createGame('rstlned')
 
 
 
 
-module.exports = { permut, validate, newGame }
+
+module.exports = { permut, validate, newGame, createGame }

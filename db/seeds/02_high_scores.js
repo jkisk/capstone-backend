@@ -9,5 +9,11 @@ exports.seed = function(knex, Promise) {
         {id: 2, player_id: 2, score: 800},
         {id: 3, player_id: 3, score: 900},
       ]);
-    });
+    })
+    .then(() => {
+      // reset sequence
+      return knex.raw(
+        `SELECT setval('high_scores_id_seq', (SELECT MAX(id) FROM high_scores));`
+      )
+    })
 };
