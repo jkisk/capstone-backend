@@ -8,39 +8,36 @@ const wordArray = fs.readFileSync(wordListPath, 'utf8').split('\n');
 //=> […, 'abmhos', 'abnegate', …]
 
 
-function permut(string) {
-    if (string.length < 3) return string; // This is our break condition
+// Build an index of every word in the given string.
+function validWords(dictionary, string) {
+    const okWords = []
+    dictionary.forEach(word => {
+        if (word.length > 2) {
+            let remaining = string
+            // Count the characters in `word` that are in `string`.
+            let foundCount = 0;
+            while (foundCount < word.length) {
+                const index = remaining.indexOf(word[foundCount])
+                if (index >= 0) {
+                    foundCount++
+                    remaining = remaining.slice(0, index) +
+                        remaining.slice(index + 1, remaining.length)
 
-    var permutations = []; // This array will hold our permutations
-
-    for (var i = 0; i < string.length; i++) {
-        var char = string[i];
-
-        // Cause we don't want any duplicates:
-        if (string.indexOf(char) != i) // if char was used already
-            continue;           // skip it this time
-
-        var remainingString = string.slice(0, i) + string.slice(i + 1, string.length)
-
-        for (var subPermutation of permut(remainingString))
-            permutations.push(char + subPermutation)
-
-    }
-    return permutations;
-}
-
-
-function validate(arr) {
-    let result = []
-    for (let ele of arr) {
-        if (wordArray.indexOf(ele) > -1) {
-            result.push(ele)
+                } else {
+                    break
+                }
+            }
+            if (foundCount == word.length) {
+                okWords.push(word)
+            }
         }
-    }
-    return result
+    })
+    return okWords
 }
 
-function newGame(id){
+
+
+function newGame(id) {
     return (
         knex('games')
             .where({ 'id': id })
@@ -48,24 +45,23 @@ function newGame(id){
     )
 }
 
-function createGame(string){
-    let validArr
-    let wordArr = permut(string)
-    .then(() => {
-        validArr = validate(wordArr)
-    })
+function createGame(string) {
+    const validArr = validWords(wordArray, string)
+
     return (
         knex('games')
-        .insert({playletters:string, validwords: validArr})
-        .returning('*')
+            .insert({ playletters: string, validwords: {validArr} })
+            .returning('*')
     )
 
 }
 
-createGame('rstlned')
+const getAllGames = () => knex('games')
+
+validWords(wordArray, 'battles')
 
 
 
 
 
-module.exports = { permut, validate, newGame, createGame }
+module.exports = { newGame, createGame, getAllGames }

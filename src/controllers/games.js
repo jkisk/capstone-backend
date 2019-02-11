@@ -9,5 +9,21 @@ function newGame(req, res, next) {
         .catch(next)
 }
 
+function getAllGames(req, res, next) {
+    model.getAllGames()
+    .then(function (data){
+        res.send({data})
+    })
+    .catch(next)
+}
 
-module.exports = { newGame }
+function createGame(req, res, next) {
+    model.createGame(req.body.string)
+    .then(function (data) {
+        res.send({data})
+    })
+    .catch(next)
+}
+
+
+module.exports = { newGame, getAllGames, createGame }
