@@ -50,7 +50,7 @@ function createGame(string) {
 
     return (
         knex('games')
-            .insert({ playletters: string, validwords: {validArr} })
+            .insert({ playletters: string, validwords: { validArr } })
             .returning('*')
     )
 
