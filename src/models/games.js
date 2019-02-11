@@ -58,10 +58,21 @@ function createGame(string) {
 
 const getAllGames = () => knex('games')
 
+function getScores() {
+    return (
+        knex('high_scores')
+        // .join('players', 'players.id', 'high_scores.player_id')
+        // .where('players.id', 'high_scores.player_id')
+        // .select('playername', 'score')
+        .orderBy('score', 'desc')
+        .limit(30)
+    )
+}
+
 validWords(wordArray, 'battles')
 
 
 
 
 
-module.exports = { newGame, createGame, getAllGames }
+module.exports = { newGame, createGame, getAllGames, getScores }
