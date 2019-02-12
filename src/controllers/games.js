@@ -25,5 +25,13 @@ function createGame(req, res, next) {
     .catch(next)
 }
 
+function getScores(req, res, next) {
+    model.getScores()
+    .then(function (data){
+        res.send({data})
+    })
+    .catch(next)
+}
 
-module.exports = { newGame, getAllGames, createGame }
+
+module.exports = { newGame, getAllGames, createGame, getScores }
