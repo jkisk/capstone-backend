@@ -61,9 +61,8 @@ const getAllGames = () => knex('games')
 function getScores() {
     return (
         knex('high_scores')
-        // .join('players', 'players.id', 'high_scores.player_id')
-        // .where('players.id', 'high_scores.player_id')
-        // .select('playername', 'score')
+        .select('players.playername', 'high_scores.score', 'high_scores.created_at')
+        .join('players', 'players.id', 'high_scores.player_id')
         .orderBy('score', 'desc')
         .limit(30)
     )
