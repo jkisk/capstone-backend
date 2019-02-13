@@ -20,5 +20,16 @@ function createPlayer(req, res, next) {
     .catch(next)
 }
 
+function scoreGame(req, res, next) {
+  if (!req.params.playerId || !req.params.score) {
+    return next({ status: 400, message: 'Bad Request' })
+  }
+  playerModel.scoreGame(req.params.playerId, req.params.score)
+    .then(function (data) {
+      return res.status(201).send({ data })
+    })
+    .catch(next)
+}
 
-module.exports = { getPlayer, createPlayer }
+
+module.exports = { getPlayer, createPlayer, scoreGame }
