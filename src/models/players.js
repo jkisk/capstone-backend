@@ -31,5 +31,13 @@ const createPlayer = (playername, password) => {
         })
 }
 
+const scoreGame = (playerId, score) => {
+    return (
+        knex('high_scores')
+            .insert({player_id: playerId, score: score})
+            .returning('*')
+    )
+}
 
-module.exports = { getPlayer, createPlayer }
+
+module.exports = { getPlayer, createPlayer, scoreGame }
