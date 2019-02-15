@@ -32,12 +32,42 @@ const createPlayer = (playername, password) => {
 }
 
 const scoreGame = (playerId, score) => {
+
+    let newEntry
     return (
         knex('high_scores')
             .insert({player_id: playerId, score: score})
             .returning('*')
+        .then(newScoreRow => {
+            newEntry = newScoreRow
+            return personalBest(playerId)
+        })
+        .then(personalBestScoreRow => {
+            console.log(personalBestScoreRow,newEntry)
+            if(!personalBestScoreRow.length || personalBestScoreRow[0].id === newEntry[0].id ){
+                return {
+                    ...newEntry,
+                    isNewHigh: true
+                }
+            }
+            else {
+                return {
+                    ...newEntry,
+                    isNewHigh: false
+                }
+            }
+        })
+    )
+}
+
+const personalBest = (playerId) => {
+    return (
+        knex('high_scores')
+            .where({player_id: playerId})
+            .limit(1)
+            .orderBy('score','desc')
     )
 }
 
 
-module.exports = { getPlayer, createPlayer, scoreGame }
+module.exports = { getPlayer, createPlayer, scoreGame, personalBest }
