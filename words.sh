@@ -1,10 +1,10 @@
 
-
+base='localhost:8080/games'
 
 curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"string":"academy"}' \
-  http://localhost:8080/games
+  $base
 
   curl --header "Content-Type: application/json" \
   --request POST \
