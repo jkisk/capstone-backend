@@ -1,5 +1,5 @@
 
-base='localhost:8080/games'
+base='https://morning-ridge-35434.herokuapp.com/games'
 
 curl --header "Content-Type: application/json" \
   --request POST \
@@ -9,44 +9,109 @@ curl --header "Content-Type: application/json" \
   curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"string":"acrobat"}' \
-  http://localhost:8080/games
+  $base
 
   curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"string":"address"}' \
-  http://localhost:8080/games
+  $base
 
   curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"string":"advisor"}' \
-  http://localhost:8080/games
+  $base
 
   curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"string":"abandon"}' \
-  http://localhost:8080/games
+  $base
 
   curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"string":"answers"}' \
-  http://localhost:8080/games
+  $base
 
   curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"string":"beneath"}' \
-  http://localhost:8080/games
+  $base
 
   curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"string":"benefit"}' \
-  http://localhost:8080/games
+  $base
 
   curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"string":"builder"}' \
-  http://localhost:8080/games
+  $base
 
   curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"string":"bravery"}' \
-  http://localhost:8080/games
+  $base
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"string":"browser"}' \
+  $base
+  
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"string":"carkeys"}' \
+  $base
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"string":"carrier"}' \
+  $base
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"string":"catfish"}' \
+  $base
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"string":"central"}' \
+  $base
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"string":"certain"}' \
+  $base
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"string":"context"}' \
+  $base
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"string":"daytime"}' \
+  $base
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"string":"degrees"}' \
+  $base
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"string":"density"}' \
+  $base
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"string":"defrost"}' \
+  $base
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"string":"deprive"}' \
+  $base
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"string":"elderly"}' \
+  $base
