@@ -5,9 +5,9 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('high_scores').insert([
-        {id: 1, player_id: 1, score: 700},
-        {id: 2, player_id: 2, score: 800},
-        {id: 3, player_id: 3, score: 900},
+        {id: 1, player_id: 1, score: 7},
+        {id: 2, player_id: 2, score: 8},
+        {id: 3, player_id: 3, score: 9},
       ]);
     })
     .then(() => {
