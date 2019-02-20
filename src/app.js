@@ -8,7 +8,7 @@ const enforce = require('express-sslify')
 app.use(cors())
 app.use(bodyParser.json())
 app.use(morgan('dev'))
-app.use(enforce.HTTPS({ trustProtoHeader: true }))
+// app.use(enforce.HTTPS({ trustProtoHeader: true }))
 if(process.env.NODE_ENV !== 'production'){require('dotenv').load()}
 
 // Routes

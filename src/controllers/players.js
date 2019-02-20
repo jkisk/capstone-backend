@@ -21,9 +21,9 @@ function createPlayer(req, res, next) {
 }
 
 function scoreGame(req, res, next) {
-  if (!req.params.playerId || !req.body.score) {
-    return next({ status: 400, message: 'Bad Request' })
-  }
+  // if (!req.params.playerId || !req.body.score) {
+  //   return next({ status: 400, message: 'Bad Request' })
+  // }
   playerModel.scoreGame(req.params.playerId, req.body.score)
     .then(function (data) {
       return res.status(201).send({ data })
