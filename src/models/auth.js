@@ -15,7 +15,6 @@ const login = (playername, password) => {
     .then(status => {
       if (!status) throw { status: 401, message: 'Unauthorized' }
       delete player.password
-      console.log(player)
       return player
     })
 }

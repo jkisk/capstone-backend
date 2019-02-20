@@ -1,4 +1,5 @@
 const auth = require('../models/auth')
+const player = require('../models/players')
 const jwt = require('jsonwebtoken')
 
 const login = (req, res, next) => {
@@ -13,7 +14,13 @@ const login = (req, res, next) => {
     }).catch(next)
 }
 
-const status = (req, res, next) => res.status(200).send({ id: req.claim.id })
+const status = (req, res, next) => 
+//use id to get playername, send back
+player.getPlayerById(req.claim.id)
+.then(player => {
+  res.status(200).send(player)
+}).catch(next)
+
 
 const authenticated = (req, res, next) => {
 

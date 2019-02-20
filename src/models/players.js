@@ -3,13 +3,21 @@ const bcrypt = require('bcrypt')
 
 
 
-const getPlayer = (playername) => {
+const getPlayerById = (id) => {
     return (
         knex('players')
-            .where({ 'playername': playername })
+            .where({ 'id': id })
             .first()
     )
 
+}
+
+const getPlayer = (playername) => {
+    return (
+        knex('players')
+        .where({'playername': playername})
+        .first()
+    )
 }
 
 const createPlayer = (playername, password) => {
@@ -43,7 +51,6 @@ const scoreGame = (playerId, score) => {
             return personalBest(playerId)
         })
         .then(personalBestScoreRow => {
-            console.log(personalBestScoreRow,newEntry)
             if(!personalBestScoreRow.length || personalBestScoreRow[0].id === newEntry[0].id ){
                 return {
                     ...newEntry,
@@ -70,4 +77,4 @@ const personalBest = (playerId) => {
 }
 
 
-module.exports = { getPlayer, createPlayer, scoreGame, personalBest }
+module.exports = { getPlayer, createPlayer, scoreGame, personalBest, getPlayerById }
