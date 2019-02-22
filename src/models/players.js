@@ -9,14 +9,13 @@ const getPlayerById = (id) => {
             .where({ 'id': id })
             .first()
     )
-
 }
 
 const getPlayer = (playername) => {
     return (
         knex('players')
-        .where({'playername': playername})
-        .first()
+            .where({ 'playername': playername })
+            .first()
     )
 }
 
@@ -44,35 +43,35 @@ const scoreGame = (playerId, score) => {
     let newEntry
     return (
         knex('high_scores')
-            .insert({player_id: playerId, score: score})
+            .insert({ player_id: playerId, score: score })
             .returning('*')
-        .then(newScoreRow => {
-            newEntry = newScoreRow
-            return personalBest(playerId)
-        })
-        .then(personalBestScoreRow => {
-            if(!personalBestScoreRow.length || personalBestScoreRow[0].id === newEntry[0].id ){
-                return {
-                    ...newEntry,
-                    isNewHigh: true
+            .then(newScoreRow => {
+                newEntry = newScoreRow
+                return personalBest(playerId)
+            })
+            .then(personalBestScoreRow => {
+                if (!personalBestScoreRow.length || personalBestScoreRow[0].id === newEntry[0].id) {
+                    return {
+                        ...newEntry,
+                        isNewHigh: true
+                    }
                 }
-            }
-            else {
-                return {
-                    ...newEntry,
-                    isNewHigh: false
+                else {
+                    return {
+                        ...newEntry,
+                        isNewHigh: false
+                    }
                 }
-            }
-        })
+            })
     )
 }
 
 const personalBest = (playerId) => {
     return (
         knex('high_scores')
-            .where({player_id: playerId})
+            .where({ player_id: playerId })
             .limit(1)
-            .orderBy('score','desc')
+            .orderBy('score', 'desc')
     )
 }
 
