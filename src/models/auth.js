@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const {getPlayer} = require('./players')
 
 
-
+// Authenticate player with login info
 const login = (playername, password) => {
   let player
   return getPlayer(playername)

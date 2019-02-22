@@ -1,12 +1,39 @@
 const fs = require('fs')
 const knex = require('../../db/index')
-
-// Returns the path to the word list which is separated by `\n`
 const wordListPath = require('word-list');
-
 const wordArray = fs.readFileSync(wordListPath, 'utf8').split('\n');
-//=> […, 'abmhos', 'abnegate', …]
 
+
+// Return a single game object by id
+function newGame(id) {
+    return (
+        knex('games')
+            .where({ 'id': id })
+            .first()
+    )
+}
+
+// Make a new game object and store it in db
+function createGame(string) {
+    const validArr = validWords(wordArray, string)
+    return (
+        knex('games')
+            .insert({ playletters: string, validwords: { validArr } })
+            .returning('*')
+    )
+
+}
+
+// Get the top 30 high scores to populate high score table
+function getScores() {
+    return (
+        knex('high_scores')
+            .select('players.playername', 'high_scores.score', 'high_scores.created_at')
+            .join('players', 'players.id', 'high_scores.player_id')
+            .orderBy('score', 'desc')
+            .limit(30)
+    )
+}
 
 // Build an index of every word in the given string.
 function validWords(dictionary, string) {
@@ -34,41 +61,6 @@ function validWords(dictionary, string) {
     })
     return okWords
 }
-
-
-
-function newGame(id) {
-    return (
-        knex('games')
-            .where({ 'id': id })
-            .first()
-    )
-}
-
-function createGame(string) {
-    const validArr = validWords(wordArray, string)
-
-    return (
-        knex('games')
-            .insert({ playletters: string, validwords: { validArr } })
-            .returning('*')
-    )
-
-}
-
-const getAllGames = () => knex('games')
-
-function getScores() {
-    return (
-        knex('high_scores')
-        .select('players.playername', 'high_scores.score', 'high_scores.created_at')
-        .join('players', 'players.id', 'high_scores.player_id')
-        .orderBy('score', 'desc')
-        .limit(30)
-    )
-}
-
-validWords(wordArray, 'battles')
 
 
 

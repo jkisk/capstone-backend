@@ -21,7 +21,7 @@ app.use(function(req, res, next){
     next({status: 404, message: 'Route not found' })
 })
 
-//Error Handling  (consider updating this, helpMessage)
+//Error Handling  
 app.use(function(err, req, res, next){
     const errorMessage = {}
   console.log(err);
