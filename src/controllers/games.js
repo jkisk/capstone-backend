@@ -28,4 +28,4 @@ function getScores(req, res, next) {
 }
 
 
-module.exports = { newGame, getAllGames, createGame, getScores }
+module.exports = { newGame, createGame, getScores }

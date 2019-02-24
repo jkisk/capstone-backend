@@ -66,4 +66,4 @@ function validWords(dictionary, string) {
 
 
 
-module.exports = { newGame, createGame, getAllGames, getScores }
+module.exports = { newGame, createGame, getScores }
