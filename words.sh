@@ -1,7 +1,7 @@
 
-# base='https://morning-ridge-35434.herokuapp.com/games'
+base='https://morning-ridge-35434.herokuapp.com/games'
 
-base='http://localhost:8080/games'
+# base='http://localhost:8080/games'
 
 curl --header "Content-Type: application/json" \
   --request POST \
