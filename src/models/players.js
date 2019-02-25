@@ -46,19 +46,19 @@ const scoreGame = (playerId, score) => {
             .insert({ player_id: playerId, score: score })
             .returning('*')
             .then(newScoreRow => {
-                newEntry = newScoreRow
+                newEntry = newScoreRow[0]
                 return personalBest(playerId)
             })
             .then(personalBestScoreRow => {
-                if (!personalBestScoreRow.length || personalBestScoreRow[0].id === newEntry[0].id) {
+                if (!personalBestScoreRow.length || personalBestScoreRow[0].id === newEntry.id) {
                     return {
-                        ...newEntry,
+                        last_score: newEntry,
                         isNewHigh: true
                     }
                 }
                 else {
                     return {
-                        ...newEntry,
+                        last_score: newEntry,
                         isNewHigh: false
                     }
                 }
